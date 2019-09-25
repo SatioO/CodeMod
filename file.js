@@ -1,33 +1,39 @@
-function Controller(param1, param2) {
-    const name = 'Vaibhav Satam';
-    let age = 28;
-}
+`import { one } from './a';
+import { two } from './a';
+import { three } from './a';
 
-Controller.prototype.name = 'Vaibhav';
+const first = 'Ashutosh',
+    last = 'Bijoor';
 
-Controller.prototype.contributeTo = function(param) {
-    var foo = 'webpack';
+var sayHello = function() {
+    debugger;
+    return 'Hi my name is ' + first + '' + last;
 };
 
-Controller.staticMethod = function(param) {
-    return [1, 2, 3].map(
-        function(x) {
-            return x * x;
-        }.bind(this)
-    );
+console.log(sayHello());
+
+var toUpperCase = function(str) {
+    return str.toUpperCase();
 };
 
-Object.defineProperty(Controller.prototype, 'hello', {
-    get: function() {
-        return 'world';
-    },
-    set: function(name) {
-        console.log('Do anything with ' + name);
-    },
-});
+console.log(toUpperCase('vaibhav'));
 
-Object.defineProperty(Controller.prototype, 'lastname', {
-    get: function() {
-        return 'Satam';
-    },
-});
+var items = function(arr) {
+    return arr.map(function(item) {
+        return item * 2;
+    });
+};
+
+console.log(items);
+
+const foo = 'Hello';
+debugger;
+const bar = 'World';
+var baz = function(a, b, c) {
+    debugger;
+    return 'Easy as ' + a + b + c;
+};
+
+module.exports.foo = foo;
+module.exports.bar = bar;
+exports.baz = baz;`;
