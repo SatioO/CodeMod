@@ -1,4 +1,8 @@
-`import { one } from './a';
+/**
+ * Note: apply all the codemods
+ */
+
+import { one } from './a';
 import { two } from './a';
 import { three } from './a';
 
@@ -36,4 +40,4 @@ var baz = function(a, b, c) {
 
 module.exports.foo = foo;
 module.exports.bar = bar;
-exports.baz = baz;`;
+exports.baz = baz;

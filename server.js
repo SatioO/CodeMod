@@ -11,13 +11,12 @@ app.use(express.static('public'));
 app.post('/codemod', (req, res) => {
     let code = req.body.source;
     let mode = req.body.mode;
-    console.log(mode);
 
     if (!code || code.length === 0) {
         return res.json({ code: '' });
     }
 
-    if (!!mode) {
+    if (mode && mode !== 'all') {
         const codemod = codemods.find(item => item.id === mode);
         const transformed = codemod.value(
             { source: code },
@@ -29,7 +28,10 @@ app.post('/codemod', (req, res) => {
     } else {
         codemods.map(codemod => {
             try {
-                if (codemod.id !== 'fnToClass') {
+                if (
+                    codemod.id !== 'fnToClass' &&
+                    codemod.id !== 'reactRmBind'
+                ) {
                     const transform = codemod.value(
                         { source: code },
                         { jscodeshift },
