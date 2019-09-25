@@ -20,10 +20,11 @@ module.exports = `
 
     var items = function(arr) {
         return arr.map(function(item) {
-            console.log(item)
             return item * 2
         })
     }
+
+    console.log(items)
 
     const foo = 'Hello';
     debugger;
