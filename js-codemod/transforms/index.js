@@ -14,14 +14,15 @@ const fnToClass = require('./fn-to-class');
 const unchainVariables = require('./unchain-variables');
 
 module.exports = [
-    noVars,
-    objectShortHand,
-    templateLiterals,
-    rmDebugger,
-    reactDestructuring,
-    converToArrow,
-    rmConsole,
-    rmBind,
-    exportsV,
-    cleanImport,
+    { id: 'noVars', value: noVars },
+    { id: 'objectShortHand', value: objectShortHand },
+    { id: 'templateLiterals', value: templateLiterals },
+    { id: 'rmDebugger', value: rmDebugger },
+    { id: 'reactDestructuring', value: reactDestructuring },
+    { id: 'converToArrow', value: converToArrow },
+    { id: 'rmConsole', value: rmConsole },
+    { id: 'rmBind', value: rmBind },
+    { id: 'exportsV', value: exportsV },
+    { id: 'cleanImport', value: cleanImport },
+    { id: 'fnToClass', value: fnToClass },
 ];

@@ -10,6 +10,10 @@
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         />
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <style>
             body {
                 margin: 0;
@@ -19,9 +23,6 @@
                 margin: 10px;
             }
 
-            #transform {
-            }
-
             #original {
                 height: 600px;
             }
@@ -29,18 +30,70 @@
             #transformed {
                 height: 600px;
             }
+            .dropdown {
+                margin-right: 5%;
+            }
         </style>
     </head>
     <body>
-        <!-- As a heading -->
-        <nav class="navbar navbar-dark bg-primary">
-            <span class="navbar-brand mb-0 h1">Code Transformation</span>
+        <nav class="navbar navbar-dark bg-primary justify-content-between">
+            <span class="navbar-brand">Code Transformation</span>
+            <div class="dropdown">
+                <a
+                    class="btn btn-primary dropdown-toggle"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    onchange="hello()"
+                >
+                    Select Codemod
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" id="noVars">No Vars</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="objectShortHand"
+                        >Object Short Hand</a
+                    >
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="templateLiterals"
+                        >Template Literals</a
+                    >
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="rmDebugger">Remove Debugger</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="converToArrow"
+                        >Convrt Fn To Arrow</a
+                    >
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="rmConsole">Remove Console</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="cleanImport">Clean Import</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="exportsV">Clean Exports</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" id="rmBind">Remove Bind</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </div>
         </nav>
         <div class="row">
             <div class="col-sm">
+                <h3 style="margin: 10px">Original</h3>
                 <div id="original"></div>
             </div>
             <div class="col-sm">
+                <h3 style="margin: 10px">Transformed</h3>
                 <div id="transformed"></div>
             </div>
         </div>
@@ -71,16 +124,22 @@
         transformed.setFontSize('18px');
 
         const button = document.getElementById('transform');
-        button.addEventListener('click', onTransform);
+        button.addEventListener('click', () => onTransform());
 
-        function onTransform() {
+        $('.dropdown-menu a').click(function(e) {
+            onTransform(e.target.id);
+        });
+
+        function onTransform(mode) {
+            console.log(mode);
+
             fetch('http://localhost:3001/codemod', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ source: original.getValue() }),
+                body: JSON.stringify({ mode, source: original.getValue() }),
             })
                 .then(r => r.json())
                 .then(res => transformed.session.setValue(res.code));
