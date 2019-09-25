@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JS Codemod Demo</title>
+        <style>
+            body {
+                margin: 0;
+            }
+
+            .ace_editor {
+                width: 50%;
+            }
+
+            #original {
+                height: 600px;
+                width: 50%;
+                position: absolute;
+                top: 10%;
+                right: 0;
+                bottom: 0;
+                left: 0;
+            }
+
+            #transformed {
+                height: 600px;
+                width: 50%;
+                position: absolute;
+                top: 10%;
+                right: 0;
+                bottom: 0;
+                left: 50%;
+            }
+        </style>
+    </head>
+    <body style="flex: 1;">
+        <div id="original"></div>
+        <div id="transformed"></div>
+        <button id="transform">transform</button>
+    </body>
+
+    <script
+        src="//ajaxorg.github.io/ace-builds/src-min-noconflict/ace.js"
+        type="text/javascript"
+        charset="utf-8"
+    ></script>
+    <script>
+        const original = ace.edit('original');
+        original.getSession().setUseWorker(false);
+        original.setTheme('ace/theme/monokai');
+        original.getSession().setMode('ace/mode/javascript');
+        original.setFontSize('18px');
+
+        const transformed = ace.edit('transformed');
+        transformed.getSession().setUseWorker(false);
+        transformed.setTheme('ace/theme/monokai');
+        transformed.getSession().setMode('ace/mode/javascript');
+        transformed.setFontSize('18px');
+
+        const button = document.getElementById('transform');
+        button.addEventListener('click', onTransform);
+
+        function onTransform() {
+            fetch('http://localhost:3001/codemod', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ source: original.getValue() }),
+            })
+                .then(r => r.json())
+                .then(res => transformed.session.setValue(res.code));
+        }
+    </script>
+</html>
