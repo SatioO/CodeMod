@@ -11,23 +11,49 @@ app.use(express.static('public'));
 app.post('/codemod', (req, res) => {
     let transformed = req.body.source;
     let mode = req.body.mode;
-
     if (mode) {
-        const codemod = codemods.find(item => item.id === mode);
+        if (mode === 'all') {
+            transformed = require('./samples/apply_all');
+            codemods.map(codemod => {
+                try {
+                    if (
+                        codemod.id !== 'fnToClass' &&
+                        codemod.id !== 'reactRmBind'
+                    ) {
+                        const transform = codemod.mode(
+                            { source: transformed },
+                            { jscodeshift },
+                            {}
+                        );
+                        transformed = transform;
+                    }
+                } catch (err) {
+                    console.log(err);
+                }
+            });
 
-        const transform = codemod.mode(
-            { source: codemod.value },
-            { jscodeshift },
-            {}
-        );
+            return res.json({
+                transformed,
+                original: require('./samples/apply_all'),
+            });
+        } else {
+            const codemod = codemods.find(item => item.id === mode);
 
-        transformed = transform;
+            const transform = codemod.mode(
+                { source: codemod.value },
+                { jscodeshift },
+                {}
+            );
 
-        return res.json({ transformed, original: codemod.value });
+            transformed = transform;
+
+            return res.json({ transformed, original: codemod.value });
+        }
     } else {
         if (!transformed || transformed.length === 0) {
             return res.json({ transformed: '' });
         }
+
         codemods.map(codemod => {
             try {
                 if (

@@ -52,6 +52,7 @@
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" id="all">All Transforms</a>
                     <a class="dropdown-item" id="fnToClass">Fn to Class</a>
                     <a class="dropdown-item" id="reactDestructuring"
                         >React Props Destructure</a
@@ -127,7 +128,7 @@
         button.addEventListener('click', () => onTransform());
 
         $('.dropdown-menu a').click(function(e) {
-            $('#dropdownMenuLink').html(e.target.id);
+            $('#dropdownMenuLink').html(e.target.innerHTML);
             onTransform(e.target.id);
         });
 
