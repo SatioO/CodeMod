@@ -40,13 +40,13 @@
             <span class="navbar-brand">Code Transformation</span>
             <div class="dropdown">
                 <a
-                    class="btn btn-primary dropdown-toggle"
+                    class="btn dropdown-toggle"
                     role="button"
                     id="dropdownMenuLink"
                     data-toggle="dropdown"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    style="color: #FFF"
+                    style="color: #333; background: #FFF; width: 200px;"
                 >
                     Select Codemod
                 </a>
@@ -127,6 +127,7 @@
         button.addEventListener('click', () => onTransform());
 
         $('.dropdown-menu a').click(function(e) {
+            $('#dropdownMenuLink').html(e.target.id);
             onTransform(e.target.id);
         });
 
