@@ -5,7 +5,6 @@ const templateLiterals = require('./template-literals');
 const rmDebugger = require('./rmdebugger');
 const converToArrow = require('./convert-to-arrow');
 const reactDestructuring = require('./react-destructuring');
-const reactPureComponent = require('./react-purecomponent');
 const reactBind = require('./react-bind');
 const rmBind = require('./rmbind');
 const exportsV = require('./exports');
@@ -13,16 +12,56 @@ const cleanImport = require('./import-cleanup');
 const fnToClass = require('./fn-to-class');
 
 module.exports = [
-    { id: 'noVars', value: noVars },
-    { id: 'objectShortHand', value: objectShortHand },
-    { id: 'templateLiterals', value: templateLiterals },
-    { id: 'rmDebugger', value: rmDebugger },
-    { id: 'converToArrow', value: converToArrow },
-    { id: 'rmConsole', value: rmConsole },
-    { id: 'rmBind', value: rmBind },
-    { id: 'exportsV', value: exportsV },
-    { id: 'cleanImport', value: cleanImport },
-    { id: 'fnToClass', value: fnToClass },
-    { id: 'reactDestructuring', value: reactDestructuring },
-    { id: 'reactRmBind', value: reactBind },
+    { id: 'noVars', mode: noVars, value: require('../../samples/no_vars') },
+    {
+        id: 'objectShortHand',
+        mode: objectShortHand,
+        value: require('../../samples/object_shorthand'),
+    },
+    {
+        id: 'templateLiterals',
+        mode: templateLiterals,
+        value: require('../../samples/template_literals'),
+    },
+    {
+        id: 'rmDebugger',
+        mode: rmDebugger,
+        value: require('../../samples/apply_all'),
+    },
+    {
+        id: 'converToArrow',
+        mode: converToArrow,
+        value: require('../../samples/arrow_fn'),
+    },
+    {
+        id: 'rmConsole',
+        mode: rmConsole,
+        value: require('../../samples/apply_all'),
+    },
+    { id: 'rmBind', mode: rmBind, value: require('../../samples/apply_all') },
+    {
+        id: 'exportsV',
+        mode: exportsV,
+        value: require('../../samples/clean_exports'),
+    },
+    {
+        id: 'cleanImport',
+        mode: cleanImport,
+        value: require('../../samples/clean_import'),
+    },
+    {
+        id: 'fnToClass',
+        mode: fnToClass,
+        value: require('../../samples/fn_to_class'),
+    },
+    {
+        id: 'reactDestructuring',
+        mode: reactDestructuring,
+        value: require('../../samples/react-destructuring'),
+    },
+    {
+        id: 'reactRmBind',
+        mode: reactBind,
+        value: require('../../samples/react-rm-bind'),
+    },
 ];

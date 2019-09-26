@@ -1,3 +1,4 @@
+module.exports = `
 /**
  * Note: apply all the codemods
  */
@@ -5,6 +6,12 @@
 import { one } from './a';
 import { two } from './a';
 import { three } from './a';
+
+var x = 15 * 5;
+debugger;
+document.getElementbyId("demo").innerHTML = x;
+
+debugger;
 
 const first = 'Ashutosh',
     last = 'Bijoor';
@@ -41,3 +48,4 @@ var baz = function(a, b, c) {
 module.exports.foo = foo;
 module.exports.bar = bar;
 exports.baz = baz;
+`;

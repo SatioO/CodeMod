@@ -9,42 +9,44 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.post('/codemod', (req, res) => {
-    let code = req.body.source;
+    let transformed = req.body.source;
     let mode = req.body.mode;
 
-    if (!code || code.length === 0) {
-        return res.json({ code: '' });
-    }
-
-    if (mode && mode !== 'all') {
+    if (mode) {
         const codemod = codemods.find(item => item.id === mode);
-        const transformed = codemod.value(
-            { source: code },
+
+        const transform = codemod.mode(
+            { source: codemod.value },
             { jscodeshift },
             {}
         );
 
-        return res.json({ code: transformed });
+        transformed = transform;
+
+        return res.json({ transformed, original: codemod.value });
     } else {
+        if (!transformed || transformed.length === 0) {
+            return res.json({ transformed: '' });
+        }
         codemods.map(codemod => {
             try {
                 if (
                     codemod.id !== 'fnToClass' &&
                     codemod.id !== 'reactRmBind'
                 ) {
-                    const transform = codemod.value(
-                        { source: code },
+                    const transform = codemod.mode(
+                        { source: transformed },
                         { jscodeshift },
                         {}
                     );
-                    code = transform;
+                    transformed = transform;
                 }
             } catch (error) {
                 console.log(error);
             }
         });
 
-        return res.json({ code });
+        return res.json({ transformed });
     }
 });
 

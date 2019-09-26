@@ -1,7 +1,4 @@
-/**
- * Note: It is converting old es5 style functions with es6 class code
- */
-
+module.exports = `
 function Controller(param1, param2) {
     const name = 'Vaibhav Satam';
     let age = 28;
@@ -35,3 +32,4 @@ Object.defineProperty(Controller.prototype, 'lastname', {
         return 'Satam';
     },
 });
+`;

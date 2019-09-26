@@ -11,12 +11,14 @@
  * }
  */
 
-class Component extends React.Component {
-    constructor() {
-        this.onClick = this.onClick.bind(this);
-        this.onMove = this.onMove.bind(this);
-    }
+module.exports = `
+    class Component extends React.Component {
+        constructor() {
+            this.onClick = this.onClick.bind(this);
+            this.onMove = this.onMove.bind(this);
+        }
 
-    onClick() {}
-    onMove() {}
-}
+        onClick() {}
+        onMove() {}
+    }
+`;

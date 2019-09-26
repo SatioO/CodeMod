@@ -3,9 +3,11 @@
  * reassigned, it is smartly replaceing it with `let` and as b is never reassigned, it gets
  * replaced with const
  */
-var a = 10;
-a = 20;
+module.exports = `
+    var a = 10;
+    a = 20;
 
-var b = 40;
+    var b = 40;
 
-console.log(b);
+    console.log(b);
+`;

@@ -2,6 +2,7 @@
  * Note: It will extract out props and destructure them all
  */
 
+module.exports = `
 import React from 'react';
 
 class C extends React.Component() {
@@ -9,3 +10,4 @@ class C extends React.Component() {
         return <div foo={this.props.foo} bar={this.props.bar} />;
     }
 }
+`;

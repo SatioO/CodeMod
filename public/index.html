@@ -131,8 +131,6 @@
         });
 
         function onTransform(mode) {
-            console.log(mode);
-
             fetch('http://localhost:3001/codemod', {
                 method: 'POST',
                 headers: {
@@ -142,7 +140,13 @@
                 body: JSON.stringify({ mode, source: original.getValue() }),
             })
                 .then(r => r.json())
-                .then(res => transformed.session.setValue(res.code));
+                .then(res => {
+                    if (res.original) {
+                        original.session.setValue(res.original);
+                    }
+
+                    transformed.session.setValue(res.transformed);
+                });
         }
     </script>
 </html>
