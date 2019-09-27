@@ -4,26 +4,35 @@
  * replaced with const
  */
 module.exports = `
+
 import { one } from './a';
 import { two } from './a';
 import { three } from './a';
 
 var initialState = {
-    bar: []    
+    bar: {}   
 }
 
 var reducer = function(state, action) {
     switch(action.type) {
         case 'SET_BAR':
-            return {...state, bar: []}
+            return {...state, bar: action.data}
             
         default:
             return state
     }
 }
 
-function GradientBar() {
+function GradientBar(props) {
+    setData() {
+        props.setData(bar: { total: 100, current: 10 })
+    }
     
+    render() {
+        return (
+            <div>Gradient Bar Chart</div>    
+        )
+    }
 }
 
 module.exports.one = one;
