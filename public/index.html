@@ -183,6 +183,12 @@
                 <div id="transformed"></div>
             </div>
         </div>
+        <br />
+        <div class="col-md-12 text-center">
+            <button type="button" id="transform" class="btn btn-primary">
+                Transform
+            </button>
+        </div>
     </body>
 
     <script
@@ -204,7 +210,7 @@
         transformed.setFontSize('18px');
 
         const button = document.getElementById('transform');
-        button.addEventListener('click', () => onTransform());
+        button.addEventListener('click', () => onButtonClick());
 
         $('.original-menu a').click(function(e) {
             $('#originalMenuLink').html(e.target.innerHTML);
@@ -215,6 +221,23 @@
             $('#transformMenuLink').html(e.target.innerHTML);
             onTransform(e.target.id);
         });
+
+        function onButtonClick() {
+            fetch('http://localhost:3001/codemod', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ source: original.getValue() }),
+            })
+                .then(r => r.json())
+                .then(res => {
+                    if (res.result) {
+                        transformed.session.setValue(res.result);
+                    }
+                });
+        }
 
         function onTransform(mode) {
             fetch('http://localhost:3001/codemod/transform', {

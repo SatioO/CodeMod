@@ -14,6 +14,25 @@ app.post('/codemod/original', (req, res) => {
   })
 })
 
+app.post('/codemod', (req, res) => {
+  let transformed = req.body.source
+  codemods.map(codemod => {
+    try {
+      if (codemod.id !== 'reactRmBind') {
+        const transform = codemod.mode(
+          { source: transformed },
+          { jscodeshift },
+          {}
+        )
+        transformed = transform
+      }
+    } catch (err) {
+      console.log('error', err)
+    }
+  })
+  return res.json({ result: transformed })
+})
+
 app.post('/codemod/transform', (req, res) => {
   let transformed = req.body.source
   const mode = req.body.mode
