@@ -16,4 +16,4 @@ var items = function(arr) {
         return item * 2;
     });
 };
-`;
+`

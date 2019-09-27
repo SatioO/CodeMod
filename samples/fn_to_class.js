@@ -1,4 +1,8 @@
 module.exports = `
+import { one } from './a';
+import { two } from './a';
+import { three } from './a';
+
 function Controller(param1, param2) {
     const name = 'Vaibhav Satam';
     let age = 28;
@@ -32,4 +36,8 @@ Object.defineProperty(Controller.prototype, 'lastname', {
         return 'Satam';
     },
 });
-`;
+
+module.exports.one = one;
+module.exports.two = two;
+exports.three = three;
+`
