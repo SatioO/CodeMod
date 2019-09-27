@@ -38,63 +38,145 @@
     <body>
         <nav class="navbar navbar-dark bg-primary justify-content-between">
             <span class="navbar-brand">Accion Code Transformation Demo</span>
-            <div class="dropdown">
-                <a
-                    class="btn dropdown-toggle"
-                    role="button"
-                    id="dropdownMenuLink"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    style="color: #333; background: #FFF; width: 220px;"
-                >
-                    Select Codemod
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" id="all">All Transforms</a>
-                    <a class="dropdown-item" id="fnToClass">Fn to Class</a>
-                    <a class="dropdown-item" id="reactDestructuring"
-                        >React Props Destructure</a
-                    >
-
-                    <a class="dropdown-item" id="reactRmBind"
-                        >React remove bind</a
-                    >
-
-                    <a class="dropdown-item" id="noVars">No Vars</a>
-
-                    <a class="dropdown-item" id="objectShortHand"
-                        >Object Short Hand</a
-                    >
-
-                    <a class="dropdown-item" id="templateLiterals"
-                        >Template Literals</a
-                    >
-
-                    <a class="dropdown-item" id="rmDebugger">Remove Debugger</a>
-
-                    <a class="dropdown-item" id="converToArrow"
-                        >Convrt Fn To Arrow</a
-                    >
-
-                    <a class="dropdown-item" id="rmConsole">Remove Console</a>
-
-                    <a class="dropdown-item" id="cleanImport">Clean Import</a>
-
-                    <a class="dropdown-item" id="exportsV">Clean Exports</a>
-
-                    <a class="dropdown-item" id="rmBind">Remove Bind</a>
-                </div>
-            </div>
         </nav>
         <div class="row">
             <div class="col-sm">
-                <h3 style="margin: 10px">Original</h3>
+                <div
+                    style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;"
+                >
+                    <h3>Original</h3>
+                    <div class="dropdown">
+                        <a
+                            class="btn dropdown-toggle"
+                            role="button"
+                            id="originalMenuLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            style="color: #333; background: #ddd; width: 220px;"
+                        >
+                            Select code
+                        </a>
+
+                        <div
+                            class="dropdown-menu original-menu"
+                            aria-labelledby="originalMenuLink"
+                        >
+                            <a class="dropdown-item" id="fnToClass"
+                                >Fn to Class</a
+                            >
+                            <a class="dropdown-item" id="reactDestructuring"
+                                >React Props Destructure</a
+                            >
+
+                            <a class="dropdown-item" id="reactRmBind"
+                                >React remove bind</a
+                            >
+
+                            <a class="dropdown-item" id="noVars">No Vars</a>
+
+                            <a class="dropdown-item" id="objectShortHand"
+                                >Object Short Hand</a
+                            >
+
+                            <a class="dropdown-item" id="templateLiterals"
+                                >Template Literals</a
+                            >
+
+                            <a class="dropdown-item" id="rmDebugger"
+                                >Remove Debugger</a
+                            >
+
+                            <a class="dropdown-item" id="converToArrow"
+                                >Convrt Fn To Arrow</a
+                            >
+
+                            <a class="dropdown-item" id="rmConsole"
+                                >Remove Console</a
+                            >
+
+                            <a class="dropdown-item" id="cleanImport"
+                                >Clean Import</a
+                            >
+
+                            <a class="dropdown-item" id="exportsV"
+                                >Clean Exports</a
+                            >
+
+                            <a class="dropdown-item" id="rmBind">Remove Bind</a>
+                        </div>
+                    </div>
+                </div>
                 <div id="original"></div>
             </div>
             <div class="col-sm">
-                <h3 style="margin: 10px">Transformed</h3>
+                <div
+                    style="display: flex; flex-direction: row; justify-content: space-between; margin: 10px;"
+                >
+                    <h3>Transformed</h3>
+                    <div class="dropdown">
+                        <a
+                            class="btn dropdown-toggle"
+                            role="button"
+                            id="transformMenuLink"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            style="color: #333; background: #ddd; width: 220px;"
+                        >
+                            Select Transformation
+                        </a>
+
+                        <div
+                            class="dropdown-menu transform-menu"
+                            aria-labelledby="transformMenuLink"
+                        >
+                            <a class="dropdown-item" id="all">All Transforms</a>
+                            <a class="dropdown-item" id="fnToClass"
+                                >Fn to Class</a
+                            >
+                            <a class="dropdown-item" id="reactDestructuring"
+                                >React Props Destructure</a
+                            >
+
+                            <a class="dropdown-item" id="reactRmBind"
+                                >React remove bind</a
+                            >
+
+                            <a class="dropdown-item" id="noVars">No Vars</a>
+
+                            <a class="dropdown-item" id="objectShortHand"
+                                >Object Short Hand</a
+                            >
+
+                            <a class="dropdown-item" id="templateLiterals"
+                                >Template Literals</a
+                            >
+
+                            <a class="dropdown-item" id="rmDebugger"
+                                >Remove Debugger</a
+                            >
+
+                            <a class="dropdown-item" id="converToArrow"
+                                >Convrt Fn To Arrow</a
+                            >
+
+                            <a class="dropdown-item" id="rmConsole"
+                                >Remove Console</a
+                            >
+
+                            <a class="dropdown-item" id="cleanImport"
+                                >Clean Import</a
+                            >
+
+                            <a class="dropdown-item" id="exportsV"
+                                >Clean Exports</a
+                            >
+
+                            <a class="dropdown-item" id="rmBind">Remove Bind</a>
+                        </div>
+                    </div>
+                </div>
                 <div id="transformed"></div>
             </div>
         </div>
@@ -127,12 +209,19 @@
         const button = document.getElementById('transform');
         button.addEventListener('click', () => onTransform());
 
-        $('.dropdown-menu a').click(function(e) {
-            $('#dropdownMenuLink').html(e.target.innerHTML);
+        $('.original-menu a').click(function(e) {
+            $('#originalMenuLink').html(e.target.innerHTML);
+            onApplyCode(e.target.id);
+        });
+
+        $('.transform-menu a').click(function(e) {
+            $('#transformMenuLink').html(e.target.innerHTML);
             onTransform(e.target.id);
         });
 
-        function onTransform(mode) {
+        function onTransform() {}
+
+        function onApplyCode(mode) {
             fetch('http://localhost:3001/codemod', {
                 method: 'POST',
                 headers: {
@@ -146,8 +235,6 @@
                     if (res.original) {
                         original.session.setValue(res.original);
                     }
-
-                    transformed.session.setValue(res.transformed);
                 });
         }
     </script>
