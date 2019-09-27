@@ -8,12 +8,23 @@ import { one } from './a';
 import { two } from './a';
 import { three } from './a';
 
-var a = 10;
-a = 20;
+var initialState = {
+    bar: []    
+}
 
-var b = 40;
+var reducer = function(state, action) {
+    switch(action.type) {
+        case 'SET_BAR':
+            return {...state, bar: []}
+            
+        default:
+            return state
+    }
+}
 
-console.log(b);
+function GradientBar() {
+    
+}
 
 module.exports.one = one;
 module.exports.two = two;

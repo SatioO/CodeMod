@@ -16,6 +16,7 @@ app.post('/codemod/original', (req, res) => {
 
 app.post('/codemod', (req, res) => {
   let transformed = req.body.source
+  console.log(req.body.source)
   codemods.map(codemod => {
     try {
       if (codemod.id !== 'reactRmBind') {
