@@ -1,79 +1,46 @@
-const express = require('express');
-const jscodeshift = require('jscodeshift');
-const codemods = require('./js-codemod/transforms');
-const bodyParser = require('body-parser');
-const app = express();
-const PORT = 3001;
+const express = require('express')
+const jscodeshift = require('jscodeshift')
+const codemods = require('./js-codemod/transforms')
+const bodyParser = require('body-parser')
+const app = express()
+const PORT = 3001
 
-app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(bodyParser.json())
+app.use(express.static('public'))
 
-app.post('/codemod', (req, res) => {
-    let transformed = req.body.source;
-    let mode = req.body.mode;
-    if (mode) {
-        if (mode === 'all') {
-            transformed = require('./samples/apply_all');
-            codemods.map(codemod => {
-                try {
-                    if (
-                        codemod.id !== 'fnToClass' &&
-                        codemod.id !== 'reactRmBind'
-                    ) {
-                        const transform = codemod.mode(
-                            { source: transformed },
-                            { jscodeshift },
-                            {}
-                        );
-                        transformed = transform;
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-            });
+app.post('/codemod/original', (req, res) => {
+  return res.json({
+    result: codemods.find(item => item.id === req.body.mode).value
+  })
+})
 
-            return res.json({
-                transformed,
-                original: require('./samples/apply_all'),
-            });
-        } else {
-            const codemod = codemods.find(item => item.id === mode);
-
-            const transform = codemod.mode(
-                { source: codemod.value },
-                { jscodeshift },
-                {}
-            );
-
-            transformed = transform;
-
-            return res.json({ transformed, original: codemod.value });
+app.post('/codemod/transform', (req, res) => {
+  let transformed = req.body.source
+  const mode = req.body.mode
+  if (mode === 'all') {
+    codemods.map(codemod => {
+      try {
+        if (codemod.id !== 'fnToClass' && codemod.id !== 'reactRmBind') {
+          const transform = codemod.mode(
+            { source: transformed },
+            { jscodeshift },
+            {}
+          )
+          transformed = transform
         }
-    } else {
-        if (!transformed || transformed.length === 0) {
-            return res.json({ transformed: '' });
-        }
+      } catch (err) {
+        console.log(err)
+      }
+    })
 
-        codemods.map(codemod => {
-            try {
-                if (
-                    codemod.id !== 'fnToClass' &&
-                    codemod.id !== 'reactRmBind'
-                ) {
-                    const transform = codemod.mode(
-                        { source: transformed },
-                        { jscodeshift },
-                        {}
-                    );
-                    transformed = transform;
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        });
+    return res.json({ result: transformed })
+  }
 
-        return res.json({ transformed });
-    }
-});
+  const codemod = codemods.find(item => item.id === mode)
+  const result = codemod.mode({ source: transformed }, { jscodeshift }, {})
+  res.json({
+    result
+  })
+})
 
-app.listen(PORT, () => console.log(`App started listening on PORT ${PORT}`));
+app.listen(PORT, () => console.log(`App started listening on PORT ${PORT}`))

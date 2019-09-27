@@ -219,10 +219,8 @@
             onTransform(e.target.id);
         });
 
-        function onTransform() {}
-
-        function onApplyCode(mode) {
-            fetch('http://localhost:3001/codemod', {
+        function onTransform(mode) {
+            fetch('http://localhost:3001/codemod/transform', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -232,8 +230,26 @@
             })
                 .then(r => r.json())
                 .then(res => {
-                    if (res.original) {
-                        original.session.setValue(res.original);
+                    if (res.result) {
+                        transformed.session.setValue(res.result);
+                    }
+                });
+        }
+
+        function onApplyCode(mode) {
+            fetch('http://localhost:3001/codemod/original', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ mode }),
+            })
+                .then(r => r.json())
+                .then(res => {
+                    console.log(res);
+                    if (res.result) {
+                        original.session.setValue(res.result);
                     }
                 });
         }
