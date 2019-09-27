@@ -4,7 +4,6 @@
  * replaced with const
  */
 module.exports = `
-
 import { one } from './a';
 import { two } from './a';
 import { three } from './a';
@@ -24,18 +23,15 @@ var reducer = function(state, action) {
 }
 
 function GradientBar(props) {
-    setData() {
-        props.setData(bar: { total: 100, current: 10 })
-    }
     
-    render() {
-        return (
-            <div>Gradient Bar Chart</div>    
-        )
-    }
 }
 
-module.exports.one = one;
-module.exports.two = two;
-exports.three = three;
+GradientBar.prototype.render = function() {
+   return <div>GradientBar Graph Chart</div>
+}
+
+module.exports.one = one
+module.exports.two = two
+exports.three = three
+
 `
