@@ -9,7 +9,8 @@ import { two } from './a';
 import { three } from './a';
 
 var initialState = {
-    bar: {}   
+    bar: {},
+    active: 0  
 }
 
 var reducer = function(state, action) {
@@ -27,7 +28,7 @@ function GradientBar(props) {
 }
 
 GradientBar.prototype.render = function() {
-   return <div>GradientBar Graph Chart</div>
+   return "GradientBar Graph Chart" + this.active
 }
 
 module.exports.one = one
