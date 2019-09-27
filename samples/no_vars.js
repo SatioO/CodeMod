@@ -24,11 +24,12 @@ var reducer = function(state, action) {
 }
 
 function GradientBar(props) {
-    
+    this.tiers = []
+
 }
 
 GradientBar.prototype.render = function() {
-   return "GradientBar Graph Chart" + this.active
+   return this.tiers.map((item) => "GradientBar Graph Chart" + this.active)
 }
 
 module.exports.one = one
