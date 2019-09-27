@@ -35,5 +35,4 @@ GradientBar.prototype.render = function() {
 module.exports.one = one
 module.exports.two = two
 exports.three = three
-
 `
