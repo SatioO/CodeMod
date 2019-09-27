@@ -20,7 +20,7 @@ app.post('/codemod/transform', (req, res) => {
   if (mode === 'all') {
     codemods.map(codemod => {
       try {
-        if (codemod.id !== 'fnToClass' && codemod.id !== 'reactRmBind') {
+        if (codemod.id !== 'reactRmBind') {
           const transform = codemod.mode(
             { source: transformed },
             { jscodeshift },
@@ -38,6 +38,7 @@ app.post('/codemod/transform', (req, res) => {
 
   const codemod = codemods.find(item => item.id === mode)
   const result = codemod.mode({ source: transformed }, { jscodeshift }, {})
+
   res.json({
     result
   })
