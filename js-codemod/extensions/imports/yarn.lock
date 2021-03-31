@@ -558,7 +558,7 @@ js-tokens@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-1.0.1.tgz#cc435a5c8b94ad15acb7983140fc80182c89aeae"
 
-jscodeshift@0.3.20, jscodeshift@^0.3.0:
+jscodeshift@0.3.20:
   version "0.3.20"
   resolved "https://registry.yarnpkg.com/jscodeshift/-/jscodeshift-0.3.20.tgz#1e8e7f1c7207d3ab91ae21f160281561156f7caa"
   dependencies:
@@ -962,8 +962,8 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 y18n@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.2.tgz#85c901bd6470ce71fc4bb723ad209b70f7f28696"
 
 yargs@~3.27.0:
   version "3.27.0"
