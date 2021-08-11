@@ -558,7 +558,7 @@ js-tokens@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-1.0.1.tgz#cc435a5c8b94ad15acb7983140fc80182c89aeae"
 
-jscodeshift@0.3.20, jscodeshift@^0.3.0:
+jscodeshift@0.3.20:
   version "0.3.20"
   resolved "https://registry.yarnpkg.com/jscodeshift/-/jscodeshift-0.3.20.tgz#1e8e7f1c7207d3ab91ae21f160281561156f7caa"
   dependencies:
@@ -740,8 +740,8 @@ path-is-absolute@^1.0.0:
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
 
 path-parse@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.5.tgz#3c1adf871ea9cd6c9431b6ea2bd74a0ff055c4c1"
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.7.tgz#fbc114b60ca42b30d9daf5858e4bd68bbedb6735"
 
 preserve@^0.2.0:
   version "0.2.0"
